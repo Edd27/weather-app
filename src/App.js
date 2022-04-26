@@ -56,11 +56,11 @@ const App = () => {
   console.log(weather, language)
 
   return (
-    <div className='App'>
-      <h1>Weather App</h1>
+    <div className='border shadow-md border-gray-200 mx-10 my-10 p-5 rounded-3xl'>
+      <div className='border text-center text-3xl font-bold'>Weather App</div>
       {weather.location && weather.current && (
-        <div>
-          <div>
+        <div className='border'>
+          <div className='border pt-10 flex flex-col justify-center items-center'>
             <h2>{weather.current.condition.text}</h2>
             <img
               src={weather.current.condition.icon}
@@ -83,14 +83,12 @@ const App = () => {
             <ul>
               {Object.keys(weather.current).map((entry, index) => {
                 const { current } = weather
-                return typeof current[entry] !== 'object' ? (
-                  <li key={index}>
-                    {entry} : {current[entry]}
-                  </li>
-                ) : (
-                  <li key={index}>
-                    {entry} : {JSON.stringify(current[entry], null, 3)}
-                  </li>
+                return (
+                  typeof current[entry] !== 'object' && (
+                    <li key={index}>
+                      {entry} : {current[entry]}
+                    </li>
+                  )
                 )
               })}
             </ul>
